@@ -8,20 +8,34 @@
   </section>
   
   <section class="form-container">
-    <form (ngSubmit)="onSubmit()" #colorForm="ngForm">
+    <form (ngSubmit)="onSubmit(colorForm)" #colorForm="ngForm">
       <label>
         Rows:
-        <input type="number" name="rows" ngModel min="1" max="1000" required />
+        <input type="number" name="rows" ngModel min="1" max="1000" required #rows="ngModel" />
+        <div *ngIf="rows.invalid && rows.touched">
+          Error: please enter a value between 1-1000 for Rows.
+        </div>
       </label>
       <label>
         Columns:
-        <input type="number" name="columns" ngModel min="1" max="702" required />
+        <input type="number" name="columns" ngModel min="1" max="702" required #columns="ngModel" />
+        <div *ngIf="columns.invalid && columns.touched">
+          Error: please enter a value between 1-702 for Columns.
+        </div>
       </label>
       <label>
         Colors:
-        <input type="number" name="colors" ngModel min="1" max="10" required />
+        <input type="number" name="colors" ngModel min="1" max="10" required #colors="ngModel" />
+        <div *ngIf="colors.invalid && colors.touched">
+          Error: please enter a value between 1-10 for Colors.
+        </div>
       </label>
-      <button type="submit" [disabled]="!colorForm.valid">Generate</button>
+      <button type="submit">Generate</button>
     </form>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
   </section>
-  

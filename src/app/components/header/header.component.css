@@ -1,0 +1,18 @@
+.nav-bar {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: #111; 
+  }
+  
+  .nav-bar a {
+    color: #e0e0e0;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .nav-bar a:hover,
+  .nav-bar a.active-link {
+    color: #ff3c78; 
+  }
