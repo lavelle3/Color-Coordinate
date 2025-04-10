@@ -1,0 +1,56 @@
+.header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  .company-name {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #330066;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 250px;
+    padding: 1rem;
+    background-color: #ffc800;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 200px;
+  }
+  
+  input {
+    width: 90%;
+    padding: 0.5rem;
+  }
+  
+  button {
+    padding: 0.5rem;
+    background-color: #500;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #702;
+    cursor: not-allowed;
+  }
+  

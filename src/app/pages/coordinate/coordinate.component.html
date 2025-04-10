@@ -1,0 +1,27 @@
+<section class="header">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo" />
+    </div>
+    <div class="company-name">
+      <h1>Company Name Co.</h1>
+    </div>
+  </section>
+  
+  <section class="form-container">
+    <form (ngSubmit)="onSubmit()" #colorForm="ngForm">
+      <label>
+        Rows:
+        <input type="number" name="rows" ngModel min="1" max="1000" required />
+      </label>
+      <label>
+        Columns:
+        <input type="number" name="columns" ngModel min="1" max="702" required />
+      </label>
+      <label>
+        Colors:
+        <input type="number" name="colors" ngModel min="1" max="10" required />
+      </label>
+      <button type="submit" [disabled]="!colorForm.valid">Generate</button>
+    </form>
+  </section>
+  
