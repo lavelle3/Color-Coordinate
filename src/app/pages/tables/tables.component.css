@@ -1,0 +1,24 @@
+.table-one {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+  }
+  
+  .color-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .color-table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+  }
+  
+  .left-cell {
+    width: 20%;
+    font-weight: bold;
+  }
+  
+  .right-cell {
+    width: 80%;
+  }
