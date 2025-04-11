@@ -2,11 +2,12 @@
     display: flex;
     align-items: center;
     padding: 1rem;
+    background-color: #80765c;
   }
   
   .logo img {
-    width: 60px;
-    height: 60px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
   }
   
@@ -15,7 +16,8 @@
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
-    color: #6a146b;
+    color: #31302b;
+    font-family: 'Lucida Handwriting', cursive;
   }
   
   form {
@@ -53,4 +55,14 @@
     background-color: #702;
     cursor: not-allowed;
   }
+
+  body {
+    background-color: #e8d297;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
   
