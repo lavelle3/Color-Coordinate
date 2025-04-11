@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { FormDataService } from '../../services/form-data.service';
 @Component({
   selector: 'app-coordinate',
   standalone: true,
@@ -13,10 +13,10 @@ export class CoordinateComponent {
   savedValues: any = null;
   successMessage: string = '';
   errorMessage: string = ''; 
-
+  constructor(private formDataService: FormDataService) {}
   onSubmit(form: any): void {
     const { rows, columns, colors } = form.value;
-
+    
     if (
       rows < 1 || rows > 1000 ||
       columns < 1 || columns > 702 ||
@@ -28,7 +28,9 @@ export class CoordinateComponent {
     }
 
     this.savedValues = form.value;
+    this.formDataService.updateFormData(this.savedValues);
     this.successMessage = 'Values saved successfully!';
     this.errorMessage = ''; 
   }
+
 }

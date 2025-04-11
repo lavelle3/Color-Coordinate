@@ -1,0 +1,18 @@
+<div class="table-one">
+    <table class="color-table">
+        <tr *ngFor="let row of displayedColors; let i = index">
+            <td class="left-cell">
+                <input type="radio" name="selectedColor" />
+                <select [(ngModel)]="selectedColors[i]">
+                    <option *ngFor="let color of validColors" 
+                    [ngValue]="color" 
+                    [disabled]="isColorSelected(color,i)"
+                    >
+                      {{ color.name }}
+                    </option>
+                  </select>
+            </td>
+            <td class="right-cell"></td>
+        </tr>
+    </table>
+</div>
