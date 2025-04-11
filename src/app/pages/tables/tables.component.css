@@ -22,3 +22,6 @@
   .right-cell {
     width: 80%;
   }
+  select option:disabled {
+    color: #888;
+  }

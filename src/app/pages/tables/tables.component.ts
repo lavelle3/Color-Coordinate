@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { FormDataService } from '../../services/form-data.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-tables',
-  imports: [NgFor],
+  imports: [NgFor,
+    CommonModule,
+    FormsModule],
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.css']
 })
 export class TablesComponent implements OnInit{
   receivedData: any;
   displayedColors: { name: string; hex: string }[] = [];
-  
+  selectedColors: any[] = [];
   constructor(private formDataService: FormDataService) {}
 
   ngOnInit() {
@@ -21,12 +25,18 @@ export class TablesComponent implements OnInit{
       const colorCount = Number(data?.colors);
       if (!isNaN(colorCount) && colorCount > 0 && colorCount <= this.validColors.length) {
         this.displayedColors = this.validColors.slice(0, colorCount);
+        this.selectedColors = this.validColors.slice(0, colorCount);
       } else {
         this.displayedColors = [];
       }
     });
   }
 
+  isColorSelected(color: any, currentIndex: number): boolean {
+    return this.selectedColors.some((c, i) =>
+      i !== currentIndex && c?.name === color.name
+    );
+  }
   validColors = 
   [
     { name: 'Red', hex: '#FF0000' },
