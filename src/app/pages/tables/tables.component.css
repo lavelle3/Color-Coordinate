@@ -25,3 +25,41 @@
   select option:disabled {
     color: #888;
   }
+
+.table-two {
+    width: 90%;
+    margin: 20px auto;
+    background-color: #ffffff;
+  }
+
+  .painting-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .painting-table td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+
+  .painting-table td:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+
+  .print-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .print-button:hover {
+    background-color: #45a049;
+  }

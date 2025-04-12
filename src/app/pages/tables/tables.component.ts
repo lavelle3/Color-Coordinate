@@ -15,6 +15,10 @@ export class TablesComponent implements OnInit{
   receivedData: any;
   displayedColors: { name: string; hex: string }[] = [];
   selectedColors: any[] = [];
+  // Table 2
+  columnHeaders: string[] = [];
+  paintingTableRows: number[] = [];
+
   constructor(private formDataService: FormDataService) {}
 
   ngOnInit() {
@@ -23,11 +27,22 @@ export class TablesComponent implements OnInit{
       console.log('Got data from form:', data);
 
       const colorCount = Number(data?.colors);
+      // Table 2
+      const rowCount = Number(data?.rows);
+      const colCount = Number(data?.columns);
+
       if (!isNaN(colorCount) && colorCount > 0 && colorCount <= this.validColors.length) {
         this.displayedColors = this.validColors.slice(0, colorCount);
         this.selectedColors = this.validColors.slice(0, colorCount);
       } else {
         this.displayedColors = [];
+      }
+      // Table 2
+      if (!isNaN(rowCount) && rowCount > 0 && rowCount <= 1000) {
+        this.paintingTableRows = Array.from({ length: rowCount }, (_, i) => i + 1);
+      }
+      if (!isNaN(colCount) && colCount > 0 && colCount <= 702) {
+        this.columnHeaders = this.generateColumnHeaders(colCount);
       }
     });
   }
@@ -37,6 +52,31 @@ export class TablesComponent implements OnInit{
       i !== currentIndex && c?.name === color.name
     );
   }
+
+  // Table 2
+  generateColumnHeaders(colCount: number): string[] {
+    const headers = [];
+    for (let i = 0; i < colCount; i++) {
+        let columnName = '';
+        let index = i;
+        do {
+            columnName = String.fromCharCode(65 + (index % 26)) + columnName;
+            index = Math.floor(index / 26) - 1;
+        } while (index >= 0);
+        headers.push(columnName);
+    }
+    return headers;
+  }
+
+  onCellClick(row: number, col: string): void {
+    console.log('Cell clicked: ${col}${row}');
+    alert('${col}${row}');
+  }
+
+  printPage(): void {
+    window.print();
+  }
+
   validColors = 
   [
     { name: 'Red', hex: '#FF0000' },
