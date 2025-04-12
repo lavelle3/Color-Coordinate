@@ -23,9 +23,9 @@ export class AboutComponent {
       profileImage: '/Edgar_image.jpg'
     },
     {
-      name: 'Nick',
-      bio: "",
-      profileImage: '/fatfatmillycat.jpg'
+      name: 'Nick Lavelle',
+      bio: "My name is Nick and I am a computer science major and am about to graduate this semester. Following graduation, I will be going to Cyber technical school in the Air Force.",
+      profileImage: '/nick_picture.png'
       // profile image is a placeholder, NgSrc breaks without a link
       // put your images in Color-Coordinate/public
     },
