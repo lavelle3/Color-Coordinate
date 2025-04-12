@@ -18,11 +18,9 @@ export class AboutComponent {
       // put your images in Color-Coordinate/public
     },
     {
-      name: 'Edgar',
-      bio: "",
-      profileImage: '/fatfatmillycat.jpg'
-      // profile image is a placeholder, NgSrc breaks without a link
-      // put your images in Color-Coordinate/public
+      name: 'Edgar Flores',
+      bio: "Hello, my name is Edgar! I'm a junior Computer Science major minoring in Chemistry. I decided to take this course because I felt web development would be a beneficial skill for me to learn and overall I have found this course fun and informative.",
+      profileImage: '/Edgar_image.jpg'
     },
     {
       name: 'Nick',
