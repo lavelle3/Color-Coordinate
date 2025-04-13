@@ -12,8 +12,8 @@ export class AboutComponent {
   teamMembers = [
     {
       name: 'Devin',
-      bio: "",
-      profileImage: '/fatfatmillycat.jpg' 
+      bio: "Hello, my name is Devin Lucas. I'm a junior Computer Science major at Coloraedo State. I love to ski, SCUBA Dive, work out, and read.",
+      profileImage: '/DevinPFP.jpg' 
       // profile image is a placeholder, NgSrc breaks without a link
       // put your images in Color-Coordinate/public
     },
