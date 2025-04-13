@@ -16,3 +16,19 @@
         </tr>
     </table>
 </div>
+
+<div class="table-two">
+    <table class="painting-table">
+        <tr>
+            <td></td>
+            <td *ngFor="let col of columnHeaders">{{ col }}</td>
+        </tr>
+        <tr *ngFor="let row of paintingTableRows">
+            <td>{{ row }}</td>
+            <td *ngFor="let col of columnHeaders"
+                (click)="onCellClick(row, col)">
+            </td>
+        </tr>
+    </table>
+    <button class="print-button" (click)="printPage()">Print Page</button>
+</div>
