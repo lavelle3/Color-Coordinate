@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    background-color: #80765c;
+    background-color: #A1997D;
   }
   
   .logo img {
@@ -16,7 +16,7 @@
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
-    color: #31302b;
+    color: #000000;
     font-family: 'Lucida Handwriting', cursive;
   }
   
@@ -26,9 +26,10 @@
     gap: 1rem;
     width: 250px;
     padding: 1rem;
-    background-color: #ffc800;
+    background-color: #98c6eb;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    justify-content: center;
   }
   
   form {
@@ -45,10 +46,12 @@
   
   button {
     padding: 0.5rem;
-    background-color: #500;
-    color: white;
+    background-color: #8E9FA4;
+    color: rgb(0, 0, 0);
     border: none;
     cursor: pointer;
+    align-self: center;
+    display: flex;
   }
   
   button:disabled {
@@ -63,6 +66,10 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+  }
+
+  .form-label{
+    color: #000000;
   }
   
   
