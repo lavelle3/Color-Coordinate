@@ -1,15 +1,16 @@
-<div>
-    <div class="team-section">
-        <div class="team-header">
-            <img ngSrc="/fatfatmillycat.jpg" alt="Team Logo" class="team-logo" width="100" height="100">
-            <h1 class="team-name">Milly Rock</h1>
-        </div>
-        <div class="team-cards">
-            <div class="team-card" *ngFor="let member of teamMembers">
-                <img [ngSrc]="member.profileImage" alt="{{ member.name }}'s Profile Image" class="profile-image" width="100" height="100" >
-                <h2 class="member-name">{{ member.name }}</h2>
-                <p class="member-bio">{{ member.bio }}</p>
-            </div>
-        </div>
+<div class="team-header-section">
+    <div class="team-header-section">
+      <img ngSrc="/cat_logo.jpg" alt="Team Logo" class="team-logo" width="100" height="100">
+      <h1 class="team-name">Milly Rock</h1>
     </div>
-</div>
+  </div>
+  <div class="team-section">
+    <div class="team-cards">
+      <div class="team-card" *ngFor="let member of teamMembers">
+        <img [ngSrc]="member.profileImage" alt="{{ member.name }}'s Profile Image" class="profile-image" width="100" height="100">
+        <h2 class="member-name">{{ member.name }}</h2>
+        <p class="member-bio">{{ member.bio }}</p>
+      </div>
+    </div>
+  </div>
+  

@@ -63,3 +63,9 @@
   .print-button:hover {
     background-color: #45a049;
   }
+
+  body {
+    background-color: #e8d297;
+    margin: 0;
+    padding: 0;
+  }
