@@ -69,8 +69,9 @@ export class TablesComponent implements OnInit{
   }
 
   onCellClick(row: number, col: string): void {
-    console.log('Cell clicked: ${col}${row}');
-    alert('${col}${row}');
+    const cellText = `${col}${row}`;
+    console.log(cellText);
+    alert(cellText);
   }
 
   printPage(): void {

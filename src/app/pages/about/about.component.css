@@ -5,6 +5,7 @@
     padding: 40px 20px;
     text-align: center;
     background-color: #e8d297;
+    border-radius: 8px;
 }
 
 .team-header-section {
@@ -74,4 +75,5 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
   }

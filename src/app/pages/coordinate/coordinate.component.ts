@@ -24,6 +24,9 @@ export class CoordinateComponent {
     ) {
       this.successMessage = ''; 
       this.errorMessage = 'Error: One or more values are out of range.'; 
+      if(this.errorMessage !== '') {
+        alert(this.errorMessage);
+      }
       return;
     }
 

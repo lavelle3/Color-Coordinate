@@ -1,42 +1,43 @@
 <section class="header">
-    <div class="logo">
-      <img src="/cat_logo.jpg" alt="Logo" />
-    </div>
-    <div class="company-name">
-      <h1>Milly Rock Co.</h1>
-    </div>
-  </section>
-  <body>
-  <section class="form-container">
-    <form (ngSubmit)="onSubmit(colorForm)" #colorForm="ngForm">
-      <label class="form-label">
-        Rows:
-        <input type="number" name="rows" ngModel min="1" max="1000" required #rows="ngModel" />
-        <div *ngIf="rows.invalid && rows.touched">
-          Error: please enter a value between 1-1000 for Rows.
-        </div>
-      </label>
-      <label class="form-label">
-        Columns:
-        <input type="number" name="columns" ngModel min="1" max="702" required #columns="ngModel" />
-        <div *ngIf="columns.invalid && columns.touched">
-          Error: please enter a value between 1-702 for Columns.
-        </div>
-      </label>
-      <label class="form-label">
-        Colors:
-        <input type="number" name="colors" ngModel min="1" max="10" required #colors="ngModel" />
-        <div *ngIf="colors.invalid && colors.touched">
-          Error: please enter a value between 1-10 for Colors.
-        </div>
-      </label>
-      <button type="submit">Generate</button>
-    </form>
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
-    <div *ngIf="successMessage" class="success-message">
-      {{ successMessage }}
-    </div>
-  </section>
-</body>
+  <div class="logo">
+    <img src="/cat_logo.jpg" alt="Logo" />
+  </div>
+  <div class="company-name">
+    <h1>Milly Rock Co.</h1>
+  </div>
+</section>
+<section class="form-container">
+  <form (ngSubmit)="onSubmit(colorForm)" #colorForm="ngForm" novalidate>
+    <label class="form-label">
+      Rows:
+      <input type="number" name="rows" ngModel min="1" max="1000" required #rows="ngModel" class="form-input" />
+      <div class="error" *ngIf="rows.invalid && rows.touched">
+        Please enter a row number between 1 and 1000.
+      </div>
+    </label>
+    <label class="form-label">
+      Columns:
+      <input type="number" name="columns" ngModel min="1" max="702" required #columns="ngModel" class="form-input" />
+      <div class="error" *ngIf="columns.invalid && columns.touched">
+        Please enter a column number between 1 and 702.
+      </div>
+    </label>
+    <label class="form-label">
+      Colors:
+      <input type="number" name="colors" ngModel min="1" max="10" required #colors="ngModel" class="form-input" />
+      <div class="error" *ngIf="colors.invalid && colors.touched">
+        Please enter a color quantity between 1 and 10.
+      </div>
+    </label>
+    <button type="submit" >Generate</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="error-message" role="alert">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="success-message" role="status">
+    {{ successMessage }}
+  </div>
+</section>
+
+
