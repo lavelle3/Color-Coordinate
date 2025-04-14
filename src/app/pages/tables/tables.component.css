@@ -35,6 +35,7 @@
   .painting-table {
     width: 100%;
     border-collapse: collapse;
+    color: #1d1d1f;
   }
 
   .painting-table td {
