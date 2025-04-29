@@ -41,3 +41,17 @@ testem.log
 .DS_Store
 Thumbs.db
 node_modules
+
+# Ignore node_modules
+node_modules/
+
+# Ignore Angular cache
+.angular/
+
+# Ignore build outputs
+dist/
+out/
+build/
+
+# Ignore zipped files
+*.zip
