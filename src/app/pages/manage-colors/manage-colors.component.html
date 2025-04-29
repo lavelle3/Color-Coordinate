@@ -1,0 +1,54 @@
+<h1>Manage Colors</h1>
+
+<section class="add-color-form">
+  <h2>Add New Color</h2>
+  <form (ngSubmit)="addColor()" #addColorForm="ngForm">
+
+    <label>
+      Color Name:
+      <input type="text" [(ngModel)]="newColorName" name="name" required />
+    </label>
+
+    <label>
+      Hex Value:
+      <input type="text" [(ngModel)]="newColorHex" name="hex" required pattern="^#([0-9a-fA-F]{6})$" />
+    </label>
+
+    <button type="submit" [disabled]="addColorForm.invalid">Add Color</button>
+  </form>
+
+  <p *ngIf="addSuccess" style="color: green;">Color added.</p>
+  <p *ngIf="addError" style="color: red;">Error adding color - maybe name or hex is duplicate?</p>
+</section>
+
+<section class="edit-color-form">
+    <h2>Edit Existing Color</h2>
+  
+    <form (ngSubmit)="editColor()" #editColorForm="ngForm">
+  
+      <label>
+        Select Color:
+        <select [(ngModel)]="selectedEditColorId" name="editColorId" required>
+          <option *ngFor="let color of colors" [value]="color.id">
+            {{ color.name }} ({{ color.hex }})
+          </option>
+        </select>
+      </label>
+  
+      <label>
+        New Name:
+        <input type="text" [(ngModel)]="editColorName" name="editName" required />
+      </label>
+  
+      <label>
+        New Hex Value:
+        <input type="text" [(ngModel)]="editColorHex" name="editHex" required pattern="^#([0-9a-fA-F]{6})$" />
+      </label>
+  
+      <button type="submit" [disabled]="editColorForm.invalid">Save Changes</button>
+    </form>
+  
+    <p *ngIf="editSuccess" style="color: green;">Color edited successfully!</p>
+    <p *ngIf="editError" style="color: red;">Error editing color. Maybe name or hex is duplicate?</p>
+  </section>
+  
