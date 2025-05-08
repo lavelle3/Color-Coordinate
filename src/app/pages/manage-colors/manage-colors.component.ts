@@ -1,5 +1,18 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ColorService, Color } from '../../services/color.service';  
+ 
+@Component({
+  selector: 'app-manage-colors',
+  standalone: true,
+  imports: [
+    CommonModule, 
+    FormsModule   
+  ],
+  templateUrl: './manage-colors.component.html',
+  styleUrls: ['./manage-colors.component.css']
+})
 
 export class ManageColorsComponent {
 
