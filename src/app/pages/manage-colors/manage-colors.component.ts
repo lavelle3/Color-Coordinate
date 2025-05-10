@@ -1,15 +1,24 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ColorService, Color } from '../../services/color.service';  
+import { FormsModule } from '@angular/forms';
 
+@Component({
+  selector: 'app-manage-colors',
+  templateUrl: './manage-colors.component.html',
+  styleUrls: ['./manage-colors.component.css'],
+  imports: [FormsModule, CommonModule],
+  standalone: true
+})
 export class ManageColorsComponent {
 
-  //add
+
   newColorName: string = '';
   newColorHex: string = '';
   addSuccess = false;
   addError = false;
 
-  //edit
+
   colors: Color[] = [];
   selectedEditColorId: number = 0;
   editColorName: string = '';
@@ -23,7 +32,7 @@ export class ManageColorsComponent {
     this.fetchColors();
   }
 
-  //add
+
   addColor() {
     this.colorService.addColor(this.newColorName, this.newColorHex).subscribe({
       next: (color: Color) => {  
@@ -32,7 +41,7 @@ export class ManageColorsComponent {
         this.addError = false;
         this.newColorName = '';
         this.newColorHex = '';
-        this.fetchColors();   // reload dropdowns after add.
+        this.fetchColors();   
       },
       error: (err: any) => {  
         console.error('Error adding color:', err);
@@ -42,7 +51,7 @@ export class ManageColorsComponent {
     });
   }
 
-  //edit color
+
   editColor() {
     this.colorService.editColor(this.selectedEditColorId, this.editColorName, this.editColorHex).subscribe({
       next: (color: Color) => {
@@ -59,7 +68,7 @@ export class ManageColorsComponent {
     });
   }
 
-  //helper
+
   fetchColors() {
     this.colorService.getColors().subscribe({
       next: (data: Color[]) => this.colors = data,

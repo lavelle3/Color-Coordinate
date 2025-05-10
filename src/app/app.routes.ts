@@ -10,5 +10,5 @@ export const routes: Routes = [
   { path: 'coordinate', component: CoordinateComponent },
   { path: 'about', component: AboutComponent },
   { path: 'tables', component:TablesComponent  },
-  { path: 'manage-colors', component: ManageColorsComponent }
+  { path: 'manageColors', component: ManageColorsComponent }
 ];
