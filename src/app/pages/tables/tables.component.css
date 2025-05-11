@@ -64,9 +64,36 @@
   .print-button:hover {
     background-color: #45a049;
   }
-
+  .onlyPrint{
+    display: none;
+  }
+  .logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
   body {
     background-color: #e8d297;
     margin: 0;
     padding: 0;
   }
+  @media print {
+    .noPrint{
+      display:none;
+    }
+    .onlyPrint{
+      display: block;
+    }
+    div {
+      filter: grayscale(100%);
+    }
+    .nav-bar {
+      display: none;
+    }
+    .print-button {
+      display: none;
+    }
+    
+  }
+  
