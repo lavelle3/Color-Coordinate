@@ -28,14 +28,19 @@
 
 .table-two {
     width: 90%;
+    max-width: 100%;
     margin: 20px auto;
     background-color: #ffffff;
+    z-index: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
   }
-
   .painting-table {
     width: 100%;
     border-collapse: collapse;
     color: #1d1d1f;
+    background-color: #ffffff;
+    table-layout: fixed;
   }
 
   .painting-table td {
