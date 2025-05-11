@@ -1,17 +1,24 @@
-
+<div class="logo onlyPrint">
+    <img src="/cat_logo.jpg" alt="Logo" />
+</div>
 <div class="table-one">
     <table class="color-table">
         <tr *ngFor="let row of displayedColors; let i = index">
             <td class="left-cell">
-                <input type="radio" name="selectedColor" />
-                <select [(ngModel)]="selectedColors[i]">
-                    <option *ngFor="let color of validColors" 
-                    [ngValue]="color" 
-                    [disabled]="isColorSelected(color,i)"
-                    >
-                      {{ color.name }}
-                    </option>
-                  </select>
+                <div class="noPrint">
+                    <input type="radio" name="selectedColor" class="noPrint" />
+                    <select [(ngModel)]="selectedColors[i]" class="noPrint">
+                        <option *ngFor="let color of validColors" 
+                                [ngValue]="color" 
+                                [disabled]="isColorSelected(color, i)">
+                            {{ color.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <span class="onlyPrint">
+                    {{ selectedColors[i]?.name || 'No Color Selected' }}
+                </span>
             </td>
             <td class="right-cell"></td>
         </tr>
