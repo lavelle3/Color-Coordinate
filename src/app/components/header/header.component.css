@@ -16,3 +16,8 @@
   .nav-bar a.active-link {
     color: #98c6eb; 
   }
+  @media print {
+    .noPrint{
+      display:none;
+    }
+  }
