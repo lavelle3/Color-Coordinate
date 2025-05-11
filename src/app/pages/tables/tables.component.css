@@ -74,4 +74,14 @@
     .noPrint{
       display:none;
     }
+    div {
+      filter: grayscale(100%);
+    }
+    .nav-bar {
+      display: none;
+    }
+    .print-button {
+      display: none;
+    }
+    
   }
