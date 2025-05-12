@@ -14,7 +14,13 @@
     padding: 12px;
     border: 1px solid #ccc;
   }
-  
+
+.table-one, .table-two{
+    border-radius: 5px;
+    border: #000000 1px solid;
+    background-color: #ffffff;
+}
+
   .left-cell {
     width: 20%;
     font-weight: bold;
@@ -66,6 +72,7 @@
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
   }
 
   .print-button:hover {
@@ -101,6 +108,8 @@
     .print-button {
       display: none;
     }
-    
+    span .onlyPrint{
+      font-size: 10px;
+    }
   }
   
