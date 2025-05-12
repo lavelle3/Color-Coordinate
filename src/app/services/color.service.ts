@@ -11,7 +11,7 @@ export interface Color {
   providedIn: 'root'
 })
 export class ColorService {
-  private baseUrl = '/api/manageColors.php';
+  private baseUrl = 'https://localhost:4263/api/manageColors.php';
 
   constructor(private http: HttpClient) { }        
 

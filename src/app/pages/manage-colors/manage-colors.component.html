@@ -2,6 +2,7 @@
 
 <div class="forms">
 
+
   <section class="add-color-form">
     <h2>Add New Color</h2>
     <form (ngSubmit)="addColor()" #addColorForm="ngForm">
@@ -19,18 +20,19 @@
       <button type="submit" [disabled]="addColorForm.invalid">Add Color</button>
     </form>
 
-    <p *ngIf="addSuccess" style="color: green;">Color added.</p>
+    <p *ngIf="addSuccess" style="color: green;">Color added successfully!</p>
     <p *ngIf="addError" style="color: red;">Error adding color - maybe name or hex is duplicate?</p>
   </section>
+
 
   <section class="edit-color-form">
     <h2>Edit Existing Color</h2>
     <form (ngSubmit)="editColor()" #editColorForm="ngForm">
       <label>
         Select Color:
-        <select [(ngModel)]="selectedEditColorId" name="editColorId" required>
-          <option *ngFor="let color of colors" [value]="color.id">
-            {{ color.name }} ({{ color.hex }})
+        <select [(ngModel)]="selectedEditColorName" name="editColorName" required>
+          <option *ngFor="let color of colors" [value]="color.name">
+            {{ color.name }} ({{ color.hex_value }})
           </option>
         </select>
       </label>
@@ -53,19 +55,20 @@
     <p *ngIf="editError" style="color: red;">Error editing color. Maybe name or hex is duplicate?</p>
   </section>
 
+
   <section class="delete-color-form">
     <h2>Delete Color</h2>
     
     <label>
       Select Color:
-      <select [(ngModel)]="selectedDeleteColorId" name="deleteColorId" required>
-        <option *ngFor="let color of colors" [value]="color.id">
-          {{ color.name }} ({{ color.hex }})
+      <select [(ngModel)]="selectedDeleteColorName" name="deleteColorName" required>
+        <option *ngFor="let color of colors" [value]="color.name">
+          {{ color.name }} ({{ color.hex_value }})
         </option>
       </select>
     </label>
 
-    <button (click)="prepareDelete(selectedDeleteColorId)">Delete</button>
+    <button (click)="prepareDelete(selectedDeleteColorName)">Delete</button>
 
     <div *ngIf="deleteConfirm" class="delete-confirm">
       <p>Are you sure you want to delete this color?</p>

@@ -11,19 +11,17 @@ import { FormsModule } from '@angular/forms';
   standalone: true
 })
 export class ManageColorsComponent {
-
-
   newColorName: string = '';
   newColorHex: string = '';
   addSuccess = false;
   addError = false;
 
-  selectedDeleteColorId: number = 0;
+  selectedDeleteColorName: string = '';
   deleteConfirm = false;
   deleteError = false;
 
   colors: Color[] = [];
-  selectedEditColorId: number = 0;
+  selectedEditColorName: string = '';
   editColorName: string = '';
   editColorHex: string = '';
   editSuccess = false;
@@ -35,11 +33,10 @@ export class ManageColorsComponent {
     this.fetchColors();
   }
 
-
   addColor() {
-    this.colorService.addColor(this.newColorName, this.newColorHex).subscribe({
-      next: (color: Color) => {  
-        console.log('Color added:', color);
+    this.colorService.addColor({ name: this.newColorName, hex_value: this.newColorHex }).subscribe({
+      next: () => {  
+        console.log('Color added:', this.newColorName);
         this.addSuccess = true;
         this.addError = false;
         this.newColorName = '';
@@ -54,11 +51,10 @@ export class ManageColorsComponent {
     });
   }
 
-
   editColor() {
-    this.colorService.editColor(this.selectedEditColorId, this.editColorName, this.editColorHex).subscribe({
-      next: (color: Color) => {
-        console.log('Color edited:', color);
+    this.colorService.editColor(this.selectedEditColorName, this.editColorName, this.editColorHex).subscribe({
+      next: () => {
+        console.log('Color edited:', this.editColorName);
         this.editSuccess = true;
         this.editError = false;
         this.fetchColors();
@@ -71,8 +67,8 @@ export class ManageColorsComponent {
     });
   }
 
-  prepareDelete(id: number) {
-    this.selectedDeleteColorId = id;
+  prepareDelete(name: string) {
+    this.selectedDeleteColorName = name;
     this.deleteConfirm = true;
     this.deleteError = false;
   }
@@ -84,8 +80,9 @@ export class ManageColorsComponent {
       return;
     }
 
-    this.colorService.deleteColor(this.selectedDeleteColorId).subscribe({
+    this.colorService.deleteColor(this.selectedDeleteColorName).subscribe({
       next: () => {
+        console.log('Color deleted:', this.selectedDeleteColorName);
         this.deleteConfirm = false;
         this.deleteError = false;
         this.fetchColors();
@@ -98,7 +95,7 @@ export class ManageColorsComponent {
   }
 
   cancelDelete() {
-    this.selectedDeleteColorId = 0;
+    this.selectedDeleteColorName = '';
     this.deleteConfirm = false;
     this.deleteError = false;
   }
@@ -110,5 +107,3 @@ export class ManageColorsComponent {
     });
   }
 }
-
-
