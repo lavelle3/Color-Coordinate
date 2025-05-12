@@ -18,6 +18,9 @@ export class ManageColorsComponent {
   addSuccess = false;
   addError = false;
 
+  selectedDeleteColorId: number = 0;
+  deleteConfirm = false;
+  deleteError = false;
 
   colors: Color[] = [];
   selectedEditColorId: number = 0;
@@ -68,6 +71,37 @@ export class ManageColorsComponent {
     });
   }
 
+  prepareDelete(id: number) {
+    this.selectedDeleteColorId = id;
+    this.deleteConfirm = true;
+    this.deleteError = false;
+  }
+
+  confirmDelete() {
+    if (this.colors.length <= 2) {
+      this.deleteError = true;
+      this.deleteConfirm = false;
+      return;
+    }
+
+    this.colorService.deleteColor(this.selectedDeleteColorId).subscribe({
+      next: () => {
+        this.deleteConfirm = false;
+        this.deleteError = false;
+        this.fetchColors();
+      },
+      error: (err: any) => {
+        console.error('Error deleting color:', err);
+        this.deleteError = true;
+      }
+    });
+  }
+
+  cancelDelete() {
+    this.selectedDeleteColorId = 0;
+    this.deleteConfirm = false;
+    this.deleteError = false;
+  }
 
   fetchColors() {
     this.colorService.getColors().subscribe({

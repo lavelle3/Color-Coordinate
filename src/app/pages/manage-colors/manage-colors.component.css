@@ -11,7 +11,7 @@ section, h1 {
     justify-content: center;
     gap: 20px;
 }
-.add-color-form, .edit-color-form {
+.add-color-form, .edit-color-form, .delete-color-form {
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 8px 8px 8px 8px#AEB2CF;

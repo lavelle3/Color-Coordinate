@@ -14,12 +14,12 @@ export interface Color {
 export class ColorService {
 
   //whoever uploads the colors.php file to mySQL, can you put your Id in below?
-  private baseUrl = 'https://faure.cs.colostate.edu/~groupmateID/colors.php';                
+  private baseUrl = 'https://faure.cs.colostate.edu/~groupmateID/colors.php';
 
   constructor(private http: HttpClient) { }        
 
   addColor(name: string, hex: string): Observable<Color> {
-    return this.http.post<Color>(this.baseUrl, { name, hex });
+    return this.http.post<Color>(this.baseUrl, { action: 'add', name, hex });
   }
   
   getColors(): Observable<Color[]> {
@@ -27,6 +27,10 @@ export class ColorService {
   }
 
   editColor(id: number, name: string, hex: string): Observable<Color> {
-    return this.http.put<Color>(`${this.baseUrl}/${id}`, { name, hex });
+    return this.http.post<Color>(this.baseUrl, { action: 'edit', id, name, hex });
+  }
+
+  deleteColor(id: number): Observable<any> {
+    return this.http.post(this.baseUrl, { action: 'delete', id });
   }
 }
