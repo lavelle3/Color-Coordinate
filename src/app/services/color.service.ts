@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';   
-import { Observable } from 'rxjs';                   
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-export interface Color {    
+export interface Color {
   id: number;
   name: string;
   hex: string;
@@ -12,20 +12,23 @@ export interface Color {
   providedIn: 'root'
 })
 export class ColorService {
+  private apiUrl = 'http://localhost:3000/api/colors';
 
-  private baseUrl = '/api/colors';                  
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }        
+  getColors(): Observable<Color[]> {
+    return this.http.get<Color[]>(this.apiUrl);
+  }
 
   addColor(name: string, hex: string): Observable<Color> {
-    return this.http.post<Color>(this.baseUrl, { name, hex });
-  }
-  
-  getColors(): Observable<Color[]> {
-    return this.http.get<Color[]>(this.baseUrl);
+    return this.http.post<Color>(this.apiUrl, { name, hex });
   }
 
   editColor(id: number, name: string, hex: string): Observable<Color> {
-    return this.http.put<Color>(`${this.baseUrl}/${id}`, { name, hex });
+    return this.http.put<Color>(`${this.apiUrl}/${id}`, { name, hex });
+  }
+
+  deleteColor(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

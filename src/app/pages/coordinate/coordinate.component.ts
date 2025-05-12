@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormDataService } from '../../services/form-data.service';
+import { ColorService, Color } from '../../services/color.service';
+
 @Component({
   selector: 'app-coordinate',
   standalone: true,
@@ -9,11 +11,13 @@ import { FormDataService } from '../../services/form-data.service';
   templateUrl: './coordinate.component.html',
   styleUrls: ['./coordinate.component.css'],
 })
-export class CoordinateComponent {
+export class CoordinateComponent implements OnInit {
+  availableColors: Color[] = []; selectedColorId: number = 0;
   savedValues: any = null;
   successMessage: string = '';
   errorMessage: string = ''; 
-  constructor(private formDataService: FormDataService) {}
+  constructor(private formDataService: FormDataService, private colorService: ColorService) {}
+  ngOnInit(): void { this.colorService.getColors().subscribe(colors => { this.availableColors = colors; }); }
   onSubmit(form: any): void {
     const { rows, columns, colors } = form.value;
     
