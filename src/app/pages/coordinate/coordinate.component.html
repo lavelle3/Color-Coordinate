@@ -1,5 +1,6 @@
 
-<section class="form-container">
+<!-- OG Code -->
+<!-- <section class="form-container">
   <form (ngSubmit)="onSubmit(colorForm)" #colorForm="ngForm" novalidate>
     <label class="form-label">
       Rows:
@@ -25,6 +26,108 @@
     <button type="submit" >Generate</button>
   </form>
 
+
+  <div *ngIf="errorMessage" class="error-message" role="alert">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="success-message" role="status">
+    {{ successMessage }}
+  </div>
+</section> -->
+
+
+
+
+<!-- Improved Color Coordinate Code -->
+<section class="form-container">
+  <form (ngSubmit)="onSubmit(colorForm)" #colorForm="ngForm" novalidate>
+    <label class="form-label">
+      Rows:
+      <input
+        type="number"
+        name="rows"
+        ngModel
+        min="1"
+        max="1000"
+        required
+        #rowsInput="ngModel"
+        class="form-input"
+      />
+      <div
+        class="error"
+        *ngIf="rowsInput.invalid && rowsInput.touched"
+      >
+        Please enter a row number between 1 and 1000.
+      </div>
+    </label>
+
+    <label class="form-label">
+      Columns:
+      <input
+        type="number"
+        name="columns"
+        ngModel
+        min="1"
+        max="702"
+        required
+        #columnsInput="ngModel"
+        class="form-input"
+      />
+      <div
+        class="error"
+        *ngIf="columnsInput.invalid && columnsInput.touched"
+      >
+        Please enter a column number between 1 and 702.
+      </div>
+    </label>
+
+    <label class="form-label">
+      Colors:
+      <input
+        type="number"
+        name="colors"
+        ngModel
+        min="1"
+        
+        max="10"
+        required
+        #colorsInput="ngModel"
+        (ngModelChange)="onColorCountChange($event)"
+        class="form-input"
+      />
+      <div
+        class="error"
+        *ngIf="colorsInput.invalid && colorsInput.touched"
+      >
+        Please enter a value between 1 and 10.
+      </div>
+    </label>
+
+    <div *ngIf="colorCount && colorCount > 0">
+      <div *ngFor="let idx of getArray(colorCount); let i = index">
+        <label class="form-label">
+          Color Choice {{ i + 1 }}:
+          <select
+            name="colorChoice{{i}}"
+            [(ngModel)]="selectedColors[i]"
+            required
+          >
+            <option [ngValue]="null">Select a color</option>
+            <option
+              *ngFor="let color of validColors"
+              [ngValue]="color"
+              [disabled]="isColorSelected(color, i)"
+            >
+              {{ color.name }}
+            </option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <button type="submit">Generate</button>
+  </form>
+
   <div *ngIf="errorMessage" class="error-message" role="alert">
     {{ errorMessage }}
   </div>
@@ -32,5 +135,3 @@
     {{ successMessage }}
   </div>
 </section>
-
-

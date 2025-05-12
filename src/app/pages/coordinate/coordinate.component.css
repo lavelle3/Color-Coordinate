@@ -33,6 +33,12 @@ input {
   padding: 0.5rem;
 }
 
+/* Improved Color Coordinate Page */
+/* input, select {
+  width: 90%;
+  padding: 0.5rem;
+} */
+
 button {
   padding: 0.5rem;
   background-color: #EF767A;

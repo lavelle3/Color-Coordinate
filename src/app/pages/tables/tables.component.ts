@@ -23,23 +23,57 @@ export class TablesComponent implements OnInit{
 
   constructor(private formDataService: FormDataService) {}
 
+  // OG Code
+  // ngOnInit() {
+  //   this.formDataService.formData$.subscribe(data => {
+  //     this.receivedData = data;
+  //     console.log('Got data from form:', data);
+
+  //     const colorCount = Number(data?.colors);
+  //     // Table 2
+  //     const rowCount = Number(data?.rows);
+  //     const colCount = Number(data?.columns);
+
+  //     if (!isNaN(colorCount) && colorCount > 0 && colorCount <= this.validColors.length) {
+  //       this.displayedColors = this.validColors.slice(0, colorCount);
+  //       this.selectedColors = this.validColors.slice(0, colorCount);
+  //     } else {
+  //       this.displayedColors = [];
+  //     }
+  //     // Table 2
+  //     if (!isNaN(rowCount) && rowCount > 0 && rowCount <= 1000) {
+  //       this.paintingTableRows = Array.from({ length: rowCount }, (_, i) => i + 1);
+  //     }
+  //     if (!isNaN(colCount) && colCount > 0 && colCount <= 702) {
+  //       this.columnHeaders = this.generateColumnHeaders(colCount);
+  //     }
+  //   });
+  // }
+  
+
+  // Improved Color Coordinates Page
   ngOnInit() {
     this.formDataService.formData$.subscribe(data => {
       this.receivedData = data;
       console.log('Got data from form:', data);
-
-      const colorCount = Number(data?.colors);
-      // Table 2
+  
       const rowCount = Number(data?.rows);
       const colCount = Number(data?.columns);
-
-      if (!isNaN(colorCount) && colorCount > 0 && colorCount <= this.validColors.length) {
-        this.displayedColors = this.validColors.slice(0, colorCount);
-        this.selectedColors = this.validColors.slice(0, colorCount);
+      
+  
+      if (data?.selectedColors && Array.isArray(data.selectedColors) && data.selectedColors.length > 0) {
+        this.displayedColors = data.selectedColors;
+        this.selectedColors = data.selectedColors;
       } else {
-        this.displayedColors = [];
+        const colorCount = Number(data?.colors);
+        if (!isNaN(colorCount) && colorCount > 0 && colorCount <= this.validColors.length) {
+          this.displayedColors = this.validColors.slice(0, colorCount);
+          this.selectedColors = this.validColors.slice(0, colorCount);
+        } else {
+          this.displayedColors = [];
+        }
       }
-      // Table 2
+  
       if (!isNaN(rowCount) && rowCount > 0 && rowCount <= 1000) {
         this.paintingTableRows = Array.from({ length: rowCount }, (_, i) => i + 1);
       }
@@ -48,6 +82,7 @@ export class TablesComponent implements OnInit{
       }
     });
   }
+
   isColorSelected(color: any, currentIndex: number): boolean {
     return this.selectedColors.some((c, i) =>
       i !== currentIndex && c?.name === color.name
