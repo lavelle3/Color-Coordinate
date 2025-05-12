@@ -1,14 +1,15 @@
 <h1>Manage Colors</h1>
-
+<div class="forms">
 <section class="add-color-form">
   <h2>Add New Color</h2>
+  
   <form (ngSubmit)="addColor()" #addColorForm="ngForm">
 
     <label>
       Color Name:
       <input type="text" [(ngModel)]="newColorName" name="name" required />
     </label>
-
+    
     <label>
       Hex Value:
       <input type="text" [(ngModel)]="newColorHex" name="hex" required pattern="^#([0-9a-fA-F]{6})$" />
@@ -34,7 +35,7 @@
           </option>
         </select>
       </label>
-  
+      <br><br>
       <label>
         New Name:
         <input type="text" [(ngModel)]="editColorName" name="editName" required />
@@ -51,4 +52,4 @@
     <p *ngIf="editSuccess" style="color: green;">Color edited successfully!</p>
     <p *ngIf="editError" style="color: red;">Error editing color. Maybe name or hex is duplicate?</p>
   </section>
-  
+</div>

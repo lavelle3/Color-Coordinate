@@ -14,7 +14,7 @@ export interface Color {
 export class ColorService {
 
   //whoever uploads the colors.php file to mySQL, can you put your Id in below?
-  private apiUrl = 'https://faure.cs.colostate.edu/~groupmateID/colors.php';                
+  private baseUrl = 'https://faure.cs.colostate.edu/~groupmateID/colors.php';                
 
   constructor(private http: HttpClient) { }        
 

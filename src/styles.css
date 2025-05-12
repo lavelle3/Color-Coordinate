@@ -1,14 +1,25 @@
 body {
-    background-color: #5e6682; 
-    color: #e0e0e0; 
+    background-color: #F7FAFC; 
+    color: #1A202C; 
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
   }
+  .nav-bar {
+    background-color: #2A4365;
+    color: #F7FAFC;
+  }
   
   a {
-    color: #ff3c78; 
-    text-decoration: none;
+    color: #3182CE;
+  }
+
+  .user-box,
+  .input-box {
+    border: 1px solid #CBD5E0;
+    background-color: #FFFFFF;
+    padding: 1rem;
+    border-radius: 8px;
   }
   
   a:hover {

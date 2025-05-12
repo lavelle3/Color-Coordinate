@@ -2,7 +2,7 @@
     display: flex;
     gap: 1.5rem;
     padding: 1rem;
-    background-color: #111; 
+    background-color: #2A4365; 
   }
   
   .nav-bar a {
@@ -14,7 +14,30 @@
   
   .nav-bar a:hover,
   .nav-bar a.active-link {
-    color: #98c6eb; 
+    color: #F8B8BC; 
+    font-style: italic;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #98c6eb;
+  }
+  
+  .logo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border:#1d1d1f 3px solid;
+  }
+  
+  .company-name {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+    font-family: 'Lucida Handwriting', cursive;
   }
   @media print {
     .noPrint{

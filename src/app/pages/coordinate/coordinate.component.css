@@ -1,24 +1,4 @@
-.header {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background-color: #A1997D;
-  }
-  
-  .logo img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-  }
-  
-  .company-name {
-    flex-grow: 1;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #000000;
-    font-family: 'Lucida Handwriting', cursive;
-  }
+
   
   form {
     display: flex;
@@ -55,8 +35,9 @@ input {
 
 button {
   padding: 0.5rem;
-  background-color: #8E9FA4;
+  background-color: #EF767A;
   color: rgb(0, 0, 0);
+  border-radius: 3px;
   border: none;
   cursor: pointer;
   align-self: center;
@@ -66,15 +47,6 @@ button {
 button:disabled {
   background-color: #702;
   cursor: not-allowed;
-}
-
-body {
-  background-color: #e8d297;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 .form-label{
