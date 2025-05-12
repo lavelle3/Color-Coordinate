@@ -102,11 +102,21 @@ export class TablesComponent implements OnInit{
 
         const rowIndex = this.displayedColors.findIndex(color => color.name === this.radioColor.name);
         if (rowIndex !== -1) {
-            if (!this.rowCellCoordinates[rowIndex]) {
-                this.rowCellCoordinates[rowIndex] = [];
-            }
-
-            this.rowCellCoordinates[rowIndex].push(coordinate);
+          if (!this.rowCellCoordinates[rowIndex]) {
+            this.rowCellCoordinates[rowIndex] = [];
+        }
+        this.rowCellCoordinates[rowIndex].push(coordinate);
+        
+        this.rowCellCoordinates[rowIndex].sort((a, b) => {
+          const colA = a.match(/[A-Z]+/)![0];
+          const rowA = parseInt(a.match(/\d+/)![0]);
+          const colB = b.match(/[A-Z]+/)![0];
+          const rowB = parseInt(b.match(/\d+/)![0]);
+        
+          if (colA < colB) return -1;
+          if (colA > colB) return 1;
+          return rowA - rowB;
+        });
         }
     }
 }
