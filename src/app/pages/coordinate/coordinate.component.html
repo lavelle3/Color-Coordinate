@@ -19,7 +19,7 @@
       Colors:
       <input type="number" name="colors" ngModel min="1" max="10" required #colors="ngModel" class="form-input" />
       <div class="error" *ngIf="colors.invalid && colors.touched">
-        Please enter a color quantity between 1 and 10.
+        Please enter a color quantity between 1 and {{ colorCount }}.
       </div>
     </label>
     <button type="submit" >Generate</button>

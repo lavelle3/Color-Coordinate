@@ -14,7 +14,7 @@
       <label>
         Hex Value:
         <input type="color" [(ngModel)]="newColorHex" name="hexColorPicker" />
-        <input type="text" [(ngModel)]="newColorHex" name="hex" required pattern="^#([0-9a-fA-F]{6})$" />
+        <input type="text" [(ngModel)]="newColorHex" name="hex_value" required pattern="^#([0-9a-fA-F]{6})$" />
       </label>
 
       <button type="submit" [disabled]="addColorForm.invalid">Add Color</button>

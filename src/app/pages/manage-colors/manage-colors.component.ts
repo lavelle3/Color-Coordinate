@@ -33,7 +33,15 @@ export class ManageColorsComponent {
     this.fetchColors();
   }
 
+
   addColor() {
+    if (!this.newColorName || !this.newColorHex) {
+      console.error('Color name or hex value is missing');
+      this.addError = true;
+      this.addSuccess = false;
+      return;
+    }
+
     this.colorService.addColor({ name: this.newColorName, hex_value: this.newColorHex }).subscribe({
       next: () => {  
         console.log('Color added:', this.newColorName);
@@ -52,6 +60,13 @@ export class ManageColorsComponent {
   }
 
   editColor() {
+    if (!this.selectedEditColorName || !this.editColorName || !this.editColorHex) {
+      console.error('Edit fields are incomplete');
+      this.editError = true;
+      this.editSuccess = false;
+      return;
+    }
+
     this.colorService.editColor(this.selectedEditColorName, this.editColorName, this.editColorHex).subscribe({
       next: () => {
         console.log('Color edited:', this.editColorName);
@@ -67,6 +82,7 @@ export class ManageColorsComponent {
     });
   }
 
+
   prepareDelete(name: string) {
     this.selectedDeleteColorName = name;
     this.deleteConfirm = true;
@@ -75,6 +91,7 @@ export class ManageColorsComponent {
 
   confirmDelete() {
     if (this.colors.length <= 2) {
+      console.error('Cannot delete. At least 2 colors must remain.');
       this.deleteError = true;
       this.deleteConfirm = false;
       return;
@@ -94,16 +111,23 @@ export class ManageColorsComponent {
     });
   }
 
+
   cancelDelete() {
     this.selectedDeleteColorName = '';
     this.deleteConfirm = false;
     this.deleteError = false;
   }
 
+
   fetchColors() {
     this.colorService.getColors().subscribe({
-      next: (data: Color[]) => this.colors = data,
-      error: (err: any) => console.error('Failed to load colors', err)
+      next: (data: Color[]) => {
+        this.colors = data;
+        console.log('Fetched colors:', this.colors);
+      },
+      error: (err: any) => {
+        console.error('Failed to load colors', err);
+      }
     });
   }
 }
