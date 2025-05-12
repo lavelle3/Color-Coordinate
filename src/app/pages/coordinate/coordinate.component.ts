@@ -15,7 +15,7 @@ export class CoordinateComponent {
   savedValues: any = null;
   successMessage: string = '';
   errorMessage: string = ''; 
-  colorCount: number = 0; // Store the color count
+  colorCount: number = 10; // Store the color count
   constructor(
     private formDataService: FormDataService,
     private colorService: ColorService

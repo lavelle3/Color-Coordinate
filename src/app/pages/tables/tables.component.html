@@ -1,31 +1,36 @@
 <div class="logo onlyPrint">
     <img src="/cat_logo.jpg" alt="Logo" />
 </div>
-<div class="table-one">
+<div *ngIf="isLoading" class="loading-indicator">
+  Loading...
+</div>
+<div *ngIf="!isLoading">
+  <div class="table-one">
     <table class="color-table">
-        <tr *ngFor="let row of displayedColors; let i = index">
-            <td class="left-cell">
-                <div class="noPrint">
-                    <input type="radio" name="selectedColor" [(ngModel)]="radioColor" [value]="selectedColors[i]" class="noPrint" />
-                    <select [(ngModel)]="selectedColors[i]" (change)="onDropdownChange(selectedColors[i], i)" class="noPrint">
-                        <option *ngFor="let color of validColors" 
-                                [ngValue]="color" 
-                                [disabled]="isColorSelected(color, i)">
-                            {{ color.name }}
-                        </option>
-                    </select>
-                </div>
+      <tr *ngFor="let row of displayedColors; let i = index">
+        <td class="left-cell">
+          <div class="noPrint">
+            <input type="radio" name="selectedColor" [(ngModel)]="radioColor" [value]="selectedColors[i]" class="noPrint" />
+            <select [(ngModel)]="selectedColors[i]" (change)="onDropdownChange(selectedColors[i], i)" class="noPrint">
+              <option *ngFor="let color of validColors" 
+                      [ngValue]="color" 
+                      [disabled]="isColorSelected(color, i)">
+                {{ color.name }}
+              </option>
+            </select>
+          </div>
 
-                <span class="onlyPrint">
-                    {{ selectedColors[i]?.name || 'No Color Selected' }}
-                    ({{ selectedColors[i]?.hex || 'No Hex Code' }})
-                </span>
-            </td>
-            <td class="right-cell">
-                <p>{{ rowCellCoordinates[i].join(', ') || 'No coordinates' }}</p>
-            </td>
-        </tr>
+          <span class="onlyPrint">
+            {{ selectedColors[i]?.name || 'No Color Selected' }}
+            ({{ selectedColors[i]?.hex || 'No Hex Code' }})
+          </span>
+        </td>
+        <td class="right-cell">
+          <p>{{ rowCellCoordinates[i]?.join(', ') || 'No coordinates' }}</p>
+        </td>
+      </tr>
     </table>
+  </div>
 </div>
 
 <div class="table-two">

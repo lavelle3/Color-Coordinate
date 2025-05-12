@@ -39,22 +39,25 @@ function initializeDatabase() {
         { name: 'Black', hex: '#000000' },
         { name: 'Teal', hex: '#008080' }
     ];
-
-    db.query('SELECT COUNT(*) AS count FROM colors', (err, results) => {
-        if (err) throw err;
-
-        if (results[0].count < 10) {
-            validColors.forEach(color => {
-                const randomId = Math.floor(Math.random() * 1000000); 
-                db.query(
-                    'INSERT IGNORE INTO colors (id, name, hex_value) VALUES (?, ?, ?)',
-                    [randomId, color.name, color.hex],
-                    err => {
-                        if (err) console.error(err.message);
-                    }
-                );
-            });
+    db.query('DELETE FROM colors', err => {
+        if (err) {
+            console.error('Error resetting colors:', err.message);
+        } else {
+            console.log('Colors sucessfully reset');
         }
+    });
+    
+    validColors.forEach(color => {
+        const randomId = Math.floor(Math.random() * 1000000); 
+        db.query(
+            'INSERT IGNORE INTO colors (id, name, hex_value) VALUES (?, ?, ?)',
+            [randomId, color.name, color.hex],
+            err => {
+                if (err) console.error(err.message);
+            }
+        );
+    });
+        
         db.query('SELECT * FROM colors', (err, colors) => {
             if (err) {
                 console.error('Error fetching colors:', err.message);
@@ -62,8 +65,8 @@ function initializeDatabase() {
                 console.log('Colors in database:', colors);
             }
         });
-    });
-}
+};
+
 
 // Get all colors
 app.get('/colors', (req, res) => {
@@ -161,7 +164,7 @@ app.put('/colors/edit', (req, res) => {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const hexRegex = /^#([0-9A-Fa-f]{6})$/;
+    const hexRegex = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/;
     if (!hexRegex.test(new_hex_value)) {
         return res.status(400).json({ error: 'Invalid hex value format' });
     }

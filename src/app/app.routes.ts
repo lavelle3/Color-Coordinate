@@ -6,7 +6,7 @@ import { ManageColorsComponent } from './pages/manage-colors/manage-colors.compo
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'coordinate', pathMatch: 'full' },
+  { path: '', redirectTo: 'about', pathMatch: 'full' },
   { path: 'coordinate', component: CoordinateComponent },
   { path: 'about', component: AboutComponent },
   { path: 'tables', component:TablesComponent  },
