@@ -130,8 +130,8 @@ app.post('/colors', (req, res) => {
 });
 
 // Delete a color
-app.delete('/colors', (req, res) => {
-    const { name } = req.body;
+app.delete('/colors/delete', (req, res) => {
+    const { name } = req.query; // Read from query parameters
 
     if (!name) {
         return res.status(400).json({ error: 'Missing required fields' });
@@ -153,6 +153,50 @@ app.delete('/colors', (req, res) => {
         });
     });
 });
+
+app.put('/edit', (req, res) => {
+    const { newName, name, hex_value } = req.body;
+
+    if (!name || !hex_value || !newName) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const hexRegex = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/;
+    if (!hexRegex.test(hex_value)) {
+        return res.status(400).json({ error: 'Invalid hex value format' });
+    }
+
+    db.query('SELECT * FROM colors WHERE name = ? OR hex_value = ?', [name, hex_value], (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'Color not found' });
+        }
+
+        const id = results[0].id;
+
+        db.query(
+            'DELETE FROM colors WHERE id = ?',
+            [id],
+            err => {
+                if (err) return res.status(500).json({ error: err.message });
+
+                db.query(
+                    'INSERT INTO colors (id, name, hex_value) VALUES (?, ?, ?)',
+                    [id, newName, hex_value],
+                    err => {
+                        if (err) {
+                            res.status(500).json({ error: err.message });
+                        } else {
+                            res.status(200).json({ message: 'Color updated' });
+                        }
+                    }
+                );
+            }
+        );
+    });
+}
+);
 
 // Start the server
 const PORT = 8000;

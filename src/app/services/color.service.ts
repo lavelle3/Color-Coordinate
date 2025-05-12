@@ -37,6 +37,6 @@ export class ColorService {
 
 
   deleteColor(name: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/colors/${name}`);
-  }
+    return this.http.delete(`${this.baseUrl}/colors/delete?name=${encodeURIComponent(name)}`);
+}
 }
