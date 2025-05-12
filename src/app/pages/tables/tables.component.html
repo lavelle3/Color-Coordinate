@@ -6,8 +6,8 @@
         <tr *ngFor="let row of displayedColors; let i = index">
             <td class="left-cell">
                 <div class="noPrint">
-                    <input type="radio" name="selectedColor" class="noPrint" />
-                    <select [(ngModel)]="selectedColors[i]" class="noPrint">
+                    <input type="radio" name="selectedColor" [(ngModel)]="radioColor" [value]="selectedColors[i]" class="noPrint" />
+                    <select [(ngModel)]="selectedColors[i]" (change)="onDropdownChange(selectedColors[i], i)" class="noPrint">
                         <option *ngFor="let color of validColors" 
                                 [ngValue]="color" 
                                 [disabled]="isColorSelected(color, i)">
@@ -20,7 +20,9 @@
                     {{ selectedColors[i]?.name || 'No Color Selected' }}
                 </span>
             </td>
-            <td class="right-cell"></td>
+            <td class="right-cell">
+                <p>{{ rowCellCoordinates[i]?.join(', ') || 'No coordinates' }}</p>
+            </td>
         </tr>
     </table>
 </div>
@@ -34,7 +36,8 @@
         <tr *ngFor="let row of paintingTableRows">
             <td>{{ row }}</td>
             <td *ngFor="let col of columnHeaders"
-                (click)="onCellClick(row, col)">
+                (click)="onCellClick(row, col)"
+                [style.background-color]="getCellColor(row, col)">
             </td>
         </tr>
     </table>

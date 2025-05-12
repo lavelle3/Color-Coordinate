@@ -12,10 +12,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./tables.component.css']
 })
 export class TablesComponent implements OnInit{
+  radioColor: { name: string; hex: string } = { name: '', hex: '' };
   receivedData: any;
   displayedColors: { name: string; hex: string }[] = [];
   selectedColors: any[] = [];
-  // Table 2
+  cellColors: { [key: string]: string } = {};
+  rowCellCoordinates: { [rowIndex: number]: string[] } = {};
   columnHeaders: string[] = [];
   paintingTableRows: number[] = [];
 
@@ -46,14 +48,29 @@ export class TablesComponent implements OnInit{
       }
     });
   }
-
   isColorSelected(color: any, currentIndex: number): boolean {
     return this.selectedColors.some((c, i) =>
       i !== currentIndex && c?.name === color.name
     );
   }
+  
 
-  // Table 2
+  getCellColor(row: number, col: string): string {
+    const cellKey = `${row}${col}`; 
+    return this.cellColors[cellKey] || ''; 
+  }
+  onDropdownChange(selectedColor: { name: string; hex: string }, rowIndex: number): void {
+    this.radioColor = selectedColor;
+    const previousColor = this.displayedColors[rowIndex];
+    this.displayedColors[rowIndex] = selectedColor;
+
+    const coordinates = this.rowCellCoordinates[rowIndex];
+    if (coordinates) {
+        coordinates.forEach(coordinate => {
+            this.cellColors[coordinate] = selectedColor.hex;
+        });
+    }
+}
   generateColumnHeaders(colCount: number): string[] {
     const headers = [];
     for (let i = 0; i < colCount; i++) {
@@ -69,10 +86,30 @@ export class TablesComponent implements OnInit{
   }
 
   onCellClick(row: number, col: string): void {
-    const cellText = `${col}${row}`;
-    console.log(cellText);
-    alert(cellText);
-  }
+    if (this.radioColor) {
+        const cellKey = `${row}${col}`;
+        const coordinate = `${row}${col}`;
+
+        Object.keys(this.rowCellCoordinates).forEach(key => {
+            const rowIndex = Number(key); 
+            const index = this.rowCellCoordinates[rowIndex]?.indexOf(coordinate);
+            if (index !== -1) {
+                this.rowCellCoordinates[rowIndex].splice(index, 1); 
+            }
+        });
+
+        this.cellColors[cellKey] = this.radioColor.hex;
+
+        const rowIndex = this.displayedColors.findIndex(color => color.name === this.radioColor.name);
+        if (rowIndex !== -1) {
+            if (!this.rowCellCoordinates[rowIndex]) {
+                this.rowCellCoordinates[rowIndex] = [];
+            }
+
+            this.rowCellCoordinates[rowIndex].push(coordinate);
+        }
+    }
+}
 
   printPage(): void {
     window.print();
