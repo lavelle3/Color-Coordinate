@@ -154,19 +154,19 @@ app.delete('/colors/delete', (req, res) => {
     });
 });
 
-app.put('/edit', (req, res) => {
-    const { newName, name, hex_value } = req.body;
+app.put('/colors/edit', (req, res) => {
+    const { newName, name, new_hex_value } = req.body;
 
-    if (!name || !hex_value || !newName) {
+    if (!name || !new_hex_value || !newName) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const hexRegex = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/;
-    if (!hexRegex.test(hex_value)) {
+    const hexRegex = /^#([0-9A-Fa-f]{6})$/;
+    if (!hexRegex.test(new_hex_value)) {
         return res.status(400).json({ error: 'Invalid hex value format' });
     }
 
-    db.query('SELECT * FROM colors WHERE name = ? OR hex_value = ?', [name, hex_value], (err, results) => {
+    db.query('SELECT * FROM colors WHERE name = ?', [name], (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
 
         if (results.length === 0) {
@@ -183,7 +183,7 @@ app.put('/edit', (req, res) => {
 
                 db.query(
                     'INSERT INTO colors (id, name, hex_value) VALUES (?, ?, ?)',
-                    [id, newName, hex_value],
+                    [id, newName, new_hex_value],
                     err => {
                         if (err) {
                             res.status(500).json({ error: err.message });

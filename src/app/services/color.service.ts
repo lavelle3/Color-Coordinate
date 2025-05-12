@@ -32,7 +32,8 @@ export class ColorService {
 
 
   editColor(name: string, new_name: string, new_hex_value: string): Observable<any> {
-    return this.http.put(`${this.baseUrl}/colors/${name}`, { new_name, new_hex_value });
+    const body = { name, new_name, new_hex_value };
+    return this.http.put(`${this.baseUrl}/colors/edit`, body);
   }
 
 
