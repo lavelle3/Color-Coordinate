@@ -107,7 +107,6 @@ export class TablesComponent implements OnInit{
         }
         this.rowCellCoordinates[rowIndex].push(coordinate);
         
-        // ✅ Sort coordinates: letter(s) first, number second (e.g., A1, A2, B1...)
         this.rowCellCoordinates[rowIndex].sort((a, b) => {
           const colA = a.match(/[A-Z]+/)![0];
           const rowA = parseInt(a.match(/\d+/)![0]);
